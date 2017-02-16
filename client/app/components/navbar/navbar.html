@@ -30,14 +30,17 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right" >
-        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}">
+        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/mycars')}">
+        <a ui-sref="mycars" id="nav-internal">My Cars</a></li>
+		
+		<li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}">
         <a ui-sref="signup" id="nav-internal">Sign up</a></li>
 
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}">
         <a ui-sref="login" id="nav-internal">Login</a></li>
 
         <li ng-show="isLoggedIn()">
-        <p class="navbar-text">Hello {{ getCurrentUser().name }}</p> </li>
+		<img ng-src="{{ getCurrentUser().gravatar }}" alt="" class="gravatar-image">
 
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}">
         <a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>

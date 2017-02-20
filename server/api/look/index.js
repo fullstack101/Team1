@@ -5,4 +5,4 @@ var express = require('express');
 var router = express.Router();
 var auth = require('../../auth/auth.service');
 
-module.exportrs = router;
+module.exports = router;

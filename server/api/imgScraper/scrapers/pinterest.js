@@ -1,8 +1,32 @@
 'use strict';
 
-var controller = require('./look.controller');
-var express = require('express');
-var router = express.Router();
-var auth = require('../../auth/auth.service');
+var request = require('request');
+var cheerio = require('cheerio');
 
-module.exportrs = router;
+exports.list = function(url, cb){
+	request(url, function(error,resp,body){
+		if(error) {
+			cb({
+				error: error
+			});
+		}
+		if(!error){
+			var $ = cheerio.load(body);
+			var pin = {};
+			var $url = url;
+			var $img = $('.heightContainer img').attr('src');  //what we get from pinterest
+			var $desc = $('.heightContainer img').attr('alt');// description from pinterest 
+		
+			console.log($img + 'pin url');
+
+			var pin = {
+				img: $img,
+				url: $url,
+				desc: $desc
+			}
+
+			//respond with a final JSON object
+			cb(pin);
+		}
+	});
+}

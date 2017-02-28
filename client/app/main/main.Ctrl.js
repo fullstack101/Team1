@@ -48,7 +48,7 @@
         myModal.$promise.then(myModal.show);
       }
 
-      $scope.showUploadForm = function(){
+      $scope.showUploadForm = function() {
         $scope.uploadLookForm = true;
         $scope.scrapePostForm = false;
         $scope.uploadLookTitle = false;
@@ -134,19 +134,19 @@
           email: $scope.user.email,
           name: $scope.user.name,
           linkURL: $scope.look._id,
-          _creator: $scope.user._id         
+          _creator: $scope.user._id
         }
       }).then(function(resp){
         console.log('successful upload');
-        $scope.looks.splice(0,0,resp.data);
-        $scope.look.title = "";
-        $scope.look.description = "";
-        $scope.picFile = "";
+        $scope.looks.splice(0,0, resp.data);
+        $scope.look.title = '';
+        $scope.look.description = '';
+        $scope.picFile = ''
         $scope.picPreview = false;
         alertSuccess.show();
-      }, function(resp){
+      }, function(resp) {
         alertFail.show();
-      }, function(evt){
+      }, function(evt) {
         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
       });

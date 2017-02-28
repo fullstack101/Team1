@@ -26,7 +26,7 @@
         })
           .then(function() {
             //Account created, redirect to home
-            $state.go('main');
+            $state.go('login');
           })
           .catch(function(err) {
             err = err.data;

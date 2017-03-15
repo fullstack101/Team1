@@ -11,10 +11,13 @@ var path = require('path');
 module.exports = function(app) {
 
   // Insert routes below
-  app.use('/api/look', require('./api/look'));
-  app.use('/api/links', require('./api/imgScraper'));
   app.use('/api/users', require('./api/user'));
   app.use('/auth', require('./auth'));
+
+  app.use('/api/look', require('./api/look'));
+  app.use('/api/links', require('./api/imgScraper'));
+  app.use('/api/comments', require('./api/comments'));
+
   app.post('/forgotpassword', require('./forgotpassword').reset);
 
   // All undefined asset or api routes should return a 404

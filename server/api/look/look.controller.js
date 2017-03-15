@@ -112,6 +112,19 @@ exports.singleLook = function(req, res) {
   });
 };
 
+exports.popLooks = function(req, res) {
+  Look.find(req.params.id)
+    .sort('-upVotes')
+    .limit(6)
+    .exec(function(err, looks) {
+      if (err) {
+        return handleError(res, err);
+      }
+      console.log(looks);
+      return res.json(looks);
+    });
+}
+
 exports.update = function(req, res) {
   if(req.body._id) {
     delete req.body._id;
@@ -147,6 +160,42 @@ exports.delete = function(req, res) {
         return handleError(res, err);
       }
       return res.send(200);
+    });
+  });
+};
+
+exports.addView = function(req, res) {
+  Look.findById(req.params.id, function(err, look) {
+    if(err) {
+      return handleError(res, err);
+    }
+    if (!look) {
+      return res.send(404);
+    }
+    look.views++;
+    look.save(function(err) {
+      if (err) {
+        return handle(res, err);
+      }
+      return res.json(look);
+    });
+  });
+};
+
+exports.addUpvote = function(req, res) {
+  Look.findById(req.params.id, function(err, look) {
+    if(err) {
+      return handleError(res, err);
+    }
+    if(!look) {
+      return res.send(404);
+    }
+    look.upVotes++;
+    look.save(function(err) {
+      if(err) {
+        return handleError(res, err);
+      }
+      return res.json(look);
     });
   });
 };

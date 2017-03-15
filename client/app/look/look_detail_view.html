@@ -1,0 +1,56 @@
+<!-- <div ng-include="'app/components/navbar/navbar.html'"></div> -->
+<div class="container">
+  <div class="listing-wrap">
+    <div class="row">
+      <!-- main content (images, description, comments) -->
+      <div class="col-sm-7">
+        <div class="listing-main">
+            <h1>{{ look.title }}</h1>
+
+          <div class="listing-images">
+              <img ng-src="{{ look.image }}"
+                      class="img-responsive">
+          </div>
+          <div class="listing-description">
+            <h3>Description</h3>
+            {{ look.description }}
+          </div>
+          <h3>Comments</h3>
+          <form ng-submit="postComment()"
+                    class="create-comment">
+            <div class="form-group">
+              <input type="text"
+                        class="form-control"
+                        placeholder="What do you think about this car?"
+                        ng-model="comment.body">
+            </div>
+            <div class="comment-button">
+              <button type="submit"
+                          class="btn btn-primary">Comment</button>
+            </div>
+          </form>
+          <div class="container comments-div" ng-repeat="comment in comments">
+            <div class="row">
+              <div class="col-sm-1">
+                <div class="thumbnail">
+                  <img class="img-responsive user-photo"
+                           ng-src="{{ comment.gravatar }}">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <strong>{{ comment.author.name }}</strong>
+                  </div>
+                  <div class="panel-body">
+                    {{ comment.comment }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -39,16 +39,17 @@ module.exports = function(app) {
     rename: function(fieldname, filename) {
       return filename + Date.now();
     },
-    onFileUploadStart: function(file){
+    onFileUploadStart: function(file) {
       console.log(file.originalname + ' is starting...');
     },
     onFileUploadComplete: function(file, req, res) {
+      console.log(file.fieldname + ' uploaded to ' + file.path);
       var fileimage = file.name;
       req.middlewareStorage = {
         fileimage: fileimage
       }
     }
-  }))
+  }));
 
   app.use(cookieParser());
   app.use(passport.initialize());

@@ -2,6 +2,9 @@
   "name": "BestCars",
   "version": "1.0.0",
   "main": "server/app.js",
+  "scripts": {
+    "test": "mocha test/simpleTest.js"
+  },
   "dependencies": {
     "body-parser": "^1.13.3",
     "cheerio": "^0.19.0",
@@ -37,5 +40,9 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
 }
